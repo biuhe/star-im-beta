@@ -21,10 +21,13 @@
 后端
 - websocket 组件转发消息
 - channel 管道/goroutine 协程 提高并发性
-- gin 框架, template, swagger
+- Gin 框架
+github：https://github.com/gin-gonic/gin
+
+- template, swagger
 - GORM
 ORM 框架
-官网：https://gorm.io
+官网：https://gorm.io/zh_CN/
 github：https://github.com/go-gorm/gorm
 
 - logrus auth, logger, govalidator
@@ -46,3 +49,5 @@ App/浏览器/接口 - Websocket调用接口 > 应用服务器 - 推送、获取
  用户->登录->鉴权->获取websocket连接->发送消息->根据消息类型推送到不同用户
  ```
 
+## 网站
+- 依赖包下载： https://pkg.go.dev/
