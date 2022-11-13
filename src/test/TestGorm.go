@@ -14,7 +14,10 @@ func main() {
 	}
 
 	// 迁移 schema 如果没有则创建实体
-	db.AutoMigrate(&models.User{})
+	err = db.AutoMigrate(&models.User{})
+	if err != nil {
+		panic("failed to create schema")
+	}
 
 	// Create
 	user := &models.User{}
