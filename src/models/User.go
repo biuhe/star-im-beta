@@ -1,6 +1,11 @@
 package models
 
-import "gorm.io/gorm"
+import (
+	"fmt"
+	"gorm.io/gorm"
+	"star-im/src/config"
+	"time"
+)
 
 // User 用户
 type User struct {
@@ -21,11 +26,11 @@ type User struct {
 	// ClientPort 客户端端口号
 	ClientPort string
 	// LoginTime 登录时间
-	LoginTime uint64
+	LoginTime *time.Time
 	// HeartbeatTime 心跳检测时间
-	HeartbeatTime uint64
+	HeartbeatTime *time.Time
 	// LogOutTime 登出时间
-	LogOutTime uint64
+	LogoutTime *time.Time
 	// boolLogout 是否登出
 	boolLogout bool
 	// DeviceInfo 设备信息
@@ -35,4 +40,13 @@ type User struct {
 // TableName 表名
 func (table *User) TableName() string {
 	return "User"
+}
+
+func GetUserList() []*User {
+	data := make([]*User, 10)
+	config.DB.Find(&data)
+	for _, v := range data {
+		fmt.Println(v)
+	}
+	return data
 }

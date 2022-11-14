@@ -22,13 +22,17 @@
 - websocket 组件转发消息
 - channel 管道/goroutine 协程 提高并发性
 - Gin 框架
-github：https://github.com/gin-gonic/gin
+  github：https://github.com/gin-gonic/gin
 
 - template, swagger
+- Viper
+  配置管理库
+  github：https://github.com/spf13/viper
+
 - GORM
-ORM 框架
-官网：https://gorm.io/zh_CN/
-github：https://github.com/go-gorm/gorm
+  ORM 框架
+  官网：https://gorm.io/zh_CN/
+  github：https://github.com/go-gorm/gorm
 
 - logrus auth, logger, govalidator
 - SQL, NoSQL, MQ 等
@@ -41,13 +45,28 @@ github：https://github.com/go-gorm/gorm
 - 存储层：SQL（MySQL）、NoSQL（Redis）、MQ
 
 ## 网络结构
+
 App/浏览器/接口 - Websocket调用接口 > 应用服务器 - 推送、获取> 数据库
 
 ## 发送流程
+
 ``` mermaid
 游客->鉴权
  用户->登录->鉴权->获取websocket连接->发送消息->根据消息类型推送到不同用户
  ```
 
 ## 网站
+
 - 依赖包下载： https://pkg.go.dev/
+
+## 步骤
+
+```shell
+# 进入项目
+cd ./star-im
+
+# 更新整理依赖
+go mod tidy
+
+```
+

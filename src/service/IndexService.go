@@ -9,6 +9,4 @@ func GetIndex(context *gin.Context) {
 	context.JSON(http.StatusOK, gin.H{
 		"msg": "hello world",
 	})
-
-	//return c
 }
