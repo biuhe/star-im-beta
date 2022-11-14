@@ -1,0 +1,46 @@
+info:
+  contact: { }
+paths:
+  /index:
+    get:
+      consumes:
+        - application/json
+      description: 应用正常访问
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+        "400":
+          description: Bad Request
+          schema:
+            type: string
+        "404":
+          description: Not Found
+          schema:
+            type: string
+        "500":
+          description: Internal Server Error
+          schema:
+            type: string
+      summary: 首页
+      tags:
+        - 首页
+  /user/list:
+    get:
+      consumes:
+        - application/json
+      description: 查询用户列表
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: 用户列表
+      tags:
+        - 用户列表
+swagger: "2.0"

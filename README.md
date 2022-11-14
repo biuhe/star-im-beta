@@ -34,6 +34,8 @@
   官网：https://gorm.io/zh_CN/
   github：https://github.com/go-gorm/gorm
 
+- swagger
+  github：https://github.com/swaggo/swag
 - logrus auth, logger, govalidator
 - SQL, NoSQL, MQ 等
 
@@ -58,6 +60,7 @@ App/浏览器/接口 - Websocket调用接口 > 应用服务器 - 推送、获取
 ## 网站
 
 - 依赖包下载： https://pkg.go.dev/
+- swagger：http://localhost:8081/swagger/index.html
 
 ## 步骤
 
@@ -70,3 +73,11 @@ go mod tidy
 
 ```
 
+## 其他
+
+swagger
+进入到 main.go所在目录执行
+
+``` shell
+swag init
+```
