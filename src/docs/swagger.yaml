@@ -28,6 +28,49 @@ paths:
       summary: 首页
       tags:
         - 首页
+  /user/create:
+    post:
+      consumes:
+        - application/json
+      description: 新增用户
+      parameters:
+        - description: 请求体
+          in: body
+          name: data
+          required: true
+          schema:
+            example: "{\n \"username\": \"张三\", \n \"password\": \"123\"\n}"
+            type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: code", "msg", "data"}
+          schema:
+            type: string
+      summary: 新增用户
+      tags:
+        - 用户
+  /user/delete:
+    get:
+      consumes:
+        - application/json
+      description: 删除用户
+      parameters:
+        - description: id
+          in: query
+          name: id
+          type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: code", "msg"}
+          schema:
+            type: string
+      summary: 删除用户
+      tags:
+        - 用户
   /user/list:
     get:
       consumes:
@@ -42,5 +85,28 @@ paths:
             type: string
       summary: 用户列表
       tags:
-        - 用户列表
+        - 用户
+  /user/update:
+    post:
+      consumes:
+        - application/json
+      description: 修改用户
+      parameters:
+        - description: 请求体
+          in: body
+          name: data
+          required: true
+          schema:
+            example: "{\n \"id\": \"1\", \n \"username\": \"张三\", \n \"password\": \"123\"\n}"
+            type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: code", "msg", "data"}
+          schema:
+            type: string
+      summary: 修改用户
+      tags:
+        - 用户
 swagger: "2.0"

@@ -21,13 +21,13 @@ func main() {
 
 	// Create
 	user := &models.User{}
-	user.Name = "张三"
+	user.Username = "张三"
 
 	db.Create(user)
 
 	// Read
-	fmt.Println(db.First(user, 1))   // 根据整型主键查找
-	db.First(user, "Name = ?", "张三") // 查找 Name 字段值为 张三 的记录
+	fmt.Println(db.First(user, 1))       // 根据整型主键查找
+	db.First(user, "Username = ?", "张三") // 查找 Name 字段值为 张三 的记录
 
 	// Update - 将 user 的 Password 更新为 123
 	db.Model(user).Update("Password", "123")
