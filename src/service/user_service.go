@@ -2,7 +2,7 @@ package service
 
 import (
 	"encoding/json"
-	"fmt"
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"io"
 	"net/http"
@@ -49,11 +49,17 @@ func CreateUser(context *gin.Context) {
 
 	user := models.User{}
 	err = json.Unmarshal(body, &user)
-	fmt.Println("请求内容：", user)
-
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
 			"msg": "转换实体异常，请排查",
+		})
+		return
+	}
+
+	dbUser := models.FindUserByUsername(user.Username)
+	if dbUser.ID != 0 {
+		context.JSON(http.StatusInternalServerError, gin.H{
+			"msg": "用户名已注册",
 		})
 		return
 	}
@@ -121,6 +127,13 @@ func UpdateUser(context *gin.Context) {
 
 	user := models.User{}
 	err = json.Unmarshal(body, &user)
+	_, validError := govalidator.ValidateStruct(user)
+	if validError != nil {
+		context.JSON(http.StatusInternalServerError, gin.H{
+			"msg": "修改参数不匹配",
+		})
+		return
+	}
 
 	models.UpdateUser(user)
 	context.JSON(http.StatusOK, gin.H{

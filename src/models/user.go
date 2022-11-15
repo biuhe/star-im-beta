@@ -16,9 +16,9 @@ type User struct {
 	// Password 密码
 	Password string `json:"password"`
 	// Phone 手机号
-	Phone string `json:"phone"`
+	Phone string `json:"phone" valid:"matches(^1[3-9]{1}\\d{9}$)"`
 	// Email 邮箱
-	Email string `json:"email"`
+	Email string `json:"email" valid:"email"`
 	// Identity 唯一标识
 	Identity string `json:"identity"`
 	// ClientIp 客户端 Ip
@@ -50,6 +50,13 @@ func GetUserList() []*User {
 		fmt.Println(v)
 	}
 	return data
+}
+
+// FindUserByUsername 通过用户名查找用户
+func FindUserByUsername(username string) User {
+	user := User{}
+	config.DB.Where("username = ?", username).First(&user)
+	return user
 }
 
 // CreateUser 创建用户
