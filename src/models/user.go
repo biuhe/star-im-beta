@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gorm.io/gorm"
 	"star-im/src/config"
+	"star-im/src/utils"
 	"time"
 )
 
@@ -15,6 +16,8 @@ type User struct {
 	Username string `json:"username"`
 	// Password 密码
 	Password string `json:"password"`
+	// Salt 盐
+	Salt string
 	// Phone 手机号
 	Phone string `json:"phone" valid:"matches(^1[3-9]{1}\\d{9}$)"`
 	// Email 邮箱
@@ -72,4 +75,14 @@ func DeleteUser(user User) *gorm.DB {
 // UpdateUser 修改用户
 func UpdateUser(user User) *gorm.DB {
 	return config.DB.Model(user).Updates(&user)
+}
+
+// EncryptPassword 加密密码
+func EncryptPassword(password string, salt string) string {
+	return utils.Md5Encode(password + salt)
+}
+
+// ValidPassword 验证密码
+func ValidPassword(password string, salt string, dbPassword string) bool {
+	return utils.Md5Encode(password+salt) == dbPassword
 }

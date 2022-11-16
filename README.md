@@ -37,7 +37,10 @@
 - swagger
   github：https://github.com/swaggo/swag
 
-- logrus auth, logger, govalidator
+- logrus auth, logger,
+- govalidator
+  github：https://github.com/asaskevich/govalidator
+
 - SQL, NoSQL, MQ 等
 
 

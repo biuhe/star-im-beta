@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"math/rand"
 	"star-im/src/models"
 )
 
@@ -22,15 +23,18 @@ func main() {
 	// Create
 	user := &models.User{}
 	user.Username = "张三"
-
+	user.Password = "123456"
+	salt := fmt.Sprintf("%06d", rand.Int31())
+	user.Salt = salt
+	user.Password = models.EncryptPassword(user.Password, salt)
 	db.Create(user)
 
 	// Read
 	fmt.Println(db.First(user, 1))       // 根据整型主键查找
 	db.First(user, "Username = ?", "张三") // 查找 Name 字段值为 张三 的记录
 
-	// Update - 将 user 的 Password 更新为 123
-	db.Model(user).Update("Password", "123")
+	// Update - 将 user 的 Phone 更新为 13888888888
+	db.Model(user).Update("Phone", "13888888888")
 	// Update - 更新多个字段
 	//db.Model(&product).Updates(models.User{Price: 200, Code: "F42"}) // 仅更新非零值字段
 	//db.Model(&product).Updates(map[string]interface{}{"Price": 200, "Code": "F42"})

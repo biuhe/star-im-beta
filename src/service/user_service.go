@@ -2,9 +2,11 @@ package service
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 	"io"
+	"math/rand"
 	"net/http"
 	"star-im/src/models"
 	"strconv"
@@ -34,7 +36,7 @@ func GetUserList(context *gin.Context) {
 // @Tags         用户
 // @Accept       json
 // @Produce      json
-// @Param		 data body string true "请求体" SchemaExample({\n "username": "张三", \n "password": "123"\n})
+// @Param		 data body string true "请求体" SchemaExample({\n "username": "张三", \n "password": "123456"\n})
 // @Success      200  {string}  json{"code", "msg", "data"}
 // @Router       /user/create [post]
 func CreateUser(context *gin.Context) {
@@ -42,7 +44,8 @@ func CreateUser(context *gin.Context) {
 	body, err := io.ReadAll(context.Request.Body)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "请输入用户名密码",
+			"code": http.StatusInternalServerError,
+			"msg":  "请输入用户名密码",
 		})
 		return
 	}
@@ -51,7 +54,8 @@ func CreateUser(context *gin.Context) {
 	err = json.Unmarshal(body, &user)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "转换实体异常，请排查",
+			"code": http.StatusInternalServerError,
+			"msg":  "转换实体异常，请排查",
 		})
 		return
 	}
@@ -59,7 +63,8 @@ func CreateUser(context *gin.Context) {
 	dbUser := models.FindUserByUsername(user.Username)
 	if dbUser.ID != 0 {
 		context.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "用户名已注册",
+			"code": http.StatusInternalServerError,
+			"msg":  "用户名已注册",
 		})
 		return
 	}
@@ -73,6 +78,9 @@ func CreateUser(context *gin.Context) {
 	//	})
 	//}
 
+	salt := fmt.Sprintf("%06d", rand.Int31())
+	user.Salt = salt
+	user.Password = models.EncryptPassword(user.Password, salt)
 	user.LoginTime = nil
 	user.HeartbeatTime = nil
 	user.LogoutTime = nil
@@ -112,7 +120,7 @@ func DeleteUser(context *gin.Context) {
 // @Tags         用户
 // @Accept       json
 // @Produce      json
-// @Param		 data body string true "请求体" SchemaExample({\n "id": "1", \n "username": "张三", \n "password": "123"\n})
+// @Param		 data body string true "请求体" SchemaExample({\n "id": "1", \n "username": "张三", \n "password": "123456"\n})
 // @Success      200  {string}  json{"code", "msg", "data"}
 // @Router       /user/update [post]
 func UpdateUser(context *gin.Context) {
@@ -120,7 +128,8 @@ func UpdateUser(context *gin.Context) {
 	body, err := io.ReadAll(context.Request.Body)
 	if err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "请求体为空",
+			"code": http.StatusInternalServerError,
+			"msg":  "请求体为空",
 		})
 		return
 	}
@@ -130,7 +139,8 @@ func UpdateUser(context *gin.Context) {
 	_, validError := govalidator.ValidateStruct(user)
 	if validError != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "修改参数不匹配",
+			"code": http.StatusInternalServerError,
+			"msg":  "修改参数不匹配",
 		})
 		return
 	}
