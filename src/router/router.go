@@ -11,6 +11,7 @@ import (
 func Router() *gin.Engine {
 	r := gin.Default()
 	r.GET("/index", service.GetIndex)
+	r.POST("/login", service.Login)
 	r.GET("/user/list", service.GetUserList)
 	r.POST("/user/create", service.CreateUser)
 	r.POST("/user/update", service.UpdateUser)

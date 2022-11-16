@@ -28,6 +28,29 @@ paths:
       summary: 首页
       tags:
         - 首页
+  /login:
+    post:
+      consumes:
+        - application/json
+      description: 登录
+      parameters:
+        - description: 请求体
+          in: body
+          name: data
+          required: true
+          schema:
+            example: "{\n \"username\": \"张三\", \n \"password\": \"12345\"\n}"
+            type: string
+      produces:
+        - application/json
+      responses:
+        "200":
+          description: code", "msg", "data"}
+          schema:
+            type: string
+      summary: 登录
+      tags:
+        - 首页
   /user/create:
     post:
       consumes:
