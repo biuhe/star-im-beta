@@ -1,7 +1,9 @@
 package config
 
 import (
+	"context"
 	"fmt"
+	"github.com/go-redis/redis/v9"
 	"github.com/spf13/viper"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -43,4 +45,22 @@ func InitDB() {
 		&gorm.Config{Logger: newLogger})
 	fmt.Println("初始化数据库配置")
 
+}
+
+var RDB *redis.Client
+
+func InitCache() {
+	RDB = redis.NewClient(&redis.Options{
+		Addr:         viper.GetString("settings.cache.redis.addr"),
+		Password:     viper.GetString("settings.cache.redis.password"), // no password set
+		DB:           viper.GetInt("settings.cache.redis.db"),          // use default DB
+		PoolSize:     viper.GetInt("settings.cache.redis.poolSize"),
+		MinIdleConns: viper.GetInt("settings.cache.redis.minIdleConn"),
+	})
+	pong, err := RDB.Ping(context.Background()).Result()
+	if err != nil {
+		fmt.Println("初始化缓存配置失败：", err)
+		return
+	}
+	fmt.Println("初始化缓存配置", pong)
 }

@@ -8,6 +8,7 @@ import (
 func main() {
 	config.InitConfig()
 	config.InitDB()
+	config.InitCache()
 
 	r := router.Router()
 

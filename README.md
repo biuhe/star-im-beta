@@ -47,6 +47,8 @@
 - JWT
   github：https://github.com/golang-jwt/jwt/
 
+- Redis
+  github：https://github.com/go-redis/redis
 - SQL, NoSQL, MQ 等
 
 

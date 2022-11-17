@@ -2,3 +2,10 @@ settings:
   database:
     driver: mysql
     source: root:root@tcp(127.0.0.1:3306)/star-im?charset=utf8mb4&parseTime=True&loc=Local&timeout=1000ms
+  cache:
+    redis:
+      addr: 127.0.0.1:6379
+      password:
+      db: 0
+      poolSize: 30
+      minIdleConn: 30
