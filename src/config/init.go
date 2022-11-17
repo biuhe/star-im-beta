@@ -64,3 +64,31 @@ func InitCache() {
 	}
 	fmt.Println("初始化缓存配置", pong)
 }
+
+const (
+	PublishKey = "websocket"
+)
+
+// Publish 发布消息到Redis
+func Publish(ctx context.Context, channel string, msg string) error {
+	var err error
+	fmt.Println("Publish 。。。。", msg)
+	err = RDB.Publish(ctx, channel, msg).Err()
+	if err != nil {
+		fmt.Println(err)
+	}
+	return err
+}
+
+// Subscribe 订阅Redis消息
+func Subscribe(ctx context.Context, channel string) (string, error) {
+	sub := RDB.Subscribe(ctx, channel)
+	fmt.Println("Subscribe 。。。。", ctx)
+	msg, err := sub.ReceiveMessage(ctx)
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+	fmt.Println("Subscribe 。。。。", msg.Payload)
+	return msg.Payload, err
+}

@@ -23,6 +23,7 @@
 ### 后端
 
 - websocket 组件转发消息
+  github：https://github.com/gorilla/websocket
 - channel 管道/goroutine 协程 提高并发性
 - Gin 框架
   github：https://github.com/gin-gonic/gin

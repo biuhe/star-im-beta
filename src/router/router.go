@@ -17,7 +17,10 @@ func Router() *gin.Engine {
 	r.POST("/user/update", service.UpdateUser)
 	r.GET("/user/delete", service.DeleteUser)
 
-	// programatically set swagger info
+	// 发送消息
+	r.GET("/ws/send", service.SendMsg)
+
+	// swagger info
 	docs.SwaggerInfo.Title = "Star-Im"
 	docs.SwaggerInfo.Description = "即时通讯接口文档"
 	docs.SwaggerInfo.Version = "1.0"
