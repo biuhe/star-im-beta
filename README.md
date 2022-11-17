@@ -3,7 +3,7 @@
 
 ## 核心功能
 - 短信发送与接受
-    - 文字、表情、图片、语音、视频等
+  - 文字、表情、图片、语音、视频等
 - 访客模式
 - 点对点私聊、群聊、广播、机器人等
 - 心跳检测下线
@@ -12,13 +12,16 @@
 - 拉黑等
 
 ## 需要技术栈
-前端
+
+### 前端
+
 - H5 Ajax 获取音频
 - Websocket 发送消息
 - Js/Vue 单页面App
 - Mui/css3 等
 
-后端
+### 后端
+
 - websocket 组件转发消息
 - channel 管道/goroutine 协程 提高并发性
 - Gin 框架
@@ -41,6 +44,9 @@
 - govalidator
   github：https://github.com/asaskevich/govalidator
 
+- JWT
+  github：https://github.com/golang-jwt/jwt/
+
 - SQL, NoSQL, MQ 等
 
 
@@ -50,16 +56,20 @@
 - 逻辑层：鉴权、登录、消息接收/发送、单聊/群聊/广播、心跳检测、用户/关系管理
 - 存储层：SQL（MySQL）、NoSQL（Redis）、MQ
 
+
+
 ## 网络结构
 
 App/浏览器/接口 - Websocket调用接口 > 应用服务器 - 推送、获取> 数据库
+
+
 
 ## 发送流程
 
 ``` mermaid
 游客->鉴权
  用户->登录->鉴权->获取websocket连接->发送消息->根据消息类型推送到不同用户
- ```
+```
 
 ## 网站
 
@@ -72,7 +82,7 @@ App/浏览器/接口 - Websocket调用接口 > 应用服务器 - 推送、获取
 # 进入项目
 cd ./star-im
 
-# 更新整理依赖
+# 更新依赖
 go mod tidy
 
 ```
