@@ -1,0 +1,109 @@
+{{define "/chat/main.shtml"}}
+<div v-show="win == 'single' || win == 'group'">
+    <header class="mui-bar mui-bar-nav">
+        <a @tap="win='main'" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+        <h1 class="mui-title" v-text="title"></h1>
+    </header>
+    <div data-from="Sonu Joshi" id="convo">
+        <div class="mui-scroll-wrapper">
+            <div class="mui-scroll">
+                <ul @click="closePanel" class="chat-thread">
+                    <!--群聊且item.dstid=当前msgcontext.dstid
+                <span v-text="JSON.stringify(msglist)"></span>
+                  -->
+                    <!-- if判断 首先  item.msg.Type==msgcontext.Type  类型相同才显示 私聊 群聊
+                     ((item.msg.Type==1) && (item.ismine? item.msg.TargetId==msgcontext.TargetId : item.msg.userId==msgcontext.TargetId ))  私聊判断
+               || ((item.msg.Type==2) && ( item.msg.TargetId==msgcontext.TargetId ))  群聊判断
+                    -->
+                    <li :class="item.ismine?'mine':'other'" class="chat " v-for="item in msglist" v-if=" item.msg.Type==msgcontext.Type
+                    && ((item.msg.Type==1) && (item.ismine? item.msg.TargetId==msgcontext.TargetId : item.msg.userId==msgcontext.TargetId ))
+                    || ((item.msg.Type==2) && ( item.msg.TargetId==msgcontext.TargetId ))
+                    ">
+                        <!--  
+                    <div v-text="item.msg"></div>
+                    <div v-text="msgcontext"></div>
+                  -->
+                        <div v-if="item.ismine">
+                            <img :src="info.icon ||'/asset/images/avatar0.png'" class="avatar right"/>
+                        </div>
+                        <div v-else>
+                            <img :src="otherAvatar ||'/asset/images/avatar0.png'" class="avatar left"/>
+                        </div>
+                        <span></span>
+                        <div class="content">
+                            <div v-if="item.msg.Media==1" v-text="item.msg.Content"></div>
+                            <img :src="item.msg.url" class="pic" v-if="item.msg.Media==4"/>
+                            <div @tap="playaudio(item.msg.url)" v-if="item.msg.Media==3">
+                                <img class="audio" src="/asset/images/audiom.png"/>
+                                <span v-text="item.msg.amount"></span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="flex-container main-content">
+        <div @tap="txtstat='audio'" class="item-1" v-if="txtstat=='kbord'">
+            <i class="iconfont icon-yuyin"></i>
+        </div>
+        <div @tap="txtstat='kbord'" class="item-1" v-if="txtstat=='audio'">
+            <i class="iconfont icon-jianpan"></i>
+        </div>
+        <div class="item-2" v-if="txtstat=='kbord'">
+            <input class="text" placeholder="这里写点啥" type="text" v-model="txtmsg"/>
+        </div>
+        <div class="item-2" v-if="txtstat=='audio'">
+            <input @touchend="stoprecorder" @touchstart="startrecorder" class="text"
+                   style="margin-top: 5px;width: 100%; text-align: center"
+                   type="button" value="请按住说话">
+
+            </input>
+        </div>
+        <div @tap="() => {panelstat==='doutu'? panelstat='kbord' : panelstat='doutu'}" class="item-3">
+            <i class="iconfont icon-7biaoqing-1"></i>
+        </div>
+        <div @tap="() => {panelstat==='more'? panelstat='kbord' : panelstat='more'}" class="item-4" v-if="!txtmsg">
+            <i class="iconfont icon-jiahao"></i>
+        </div>
+        <div @tap="sendtxtmsg(txtmsg)" class="item-4" v-if="!!txtmsg">
+            <i class="iconfont icon-fasong"></i>
+        </div>
+    </div>
+    <div id="panels" style="display: flex">
+        <div v-if="panelstat=='doutu'">
+            <div class="doutures">
+                <div @tap="sendpicmsg(item)" class="res" v-for="item in doutu.choosed.assets">
+                    <img :class="doutu.choosed.size ||'small'" :src="item"/>
+                </div>
+            </div>
+            <div class="doutupkg">
+                <div @tap="doutu.choosed=item" class="pkg" v-for="item in doutu.packages">
+                    <img :class="item.size || 'small'" :src="item.icon"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="plugins" v-if="panelstat=='more'">
+            <div @tap="dispatchplugin(item)" class="plugin" v-for="item in plugins">
+                <i :class="item.icon" class="iconfont"></i>
+                <div v-html="item.slot"></div>
+                <p v-text="item.name"></p>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<audio id="audio" style="display: none"></audio>
+<audio id="audio4play" style="display: none"></audio>
+<audio id="video" style="display: none"></audio>
+<audio id="video4play" style="display: none"></audio>
+
+<div class="rprogress" id='sound-alert' v-show="showprocess">
+    <div class="rschedule"></div>
+    <div class="r-sigh">!</div>
+    <div class="rsalert" id="audio-tips">手指上滑，取消发送</div>
+</div>
+{{end}}
