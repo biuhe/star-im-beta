@@ -4,13 +4,12 @@ import (
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
-	"star-im/src/docs"
-	"star-im/src/service"
+	"star-im/src/main/docs"
+	"star-im/src/main/service"
 )
 
 func Router() *gin.Engine {
 	r := gin.Default()
-	r.GET("/index", service.GetIndex)
 	r.POST("/login", service.Login)
 	r.GET("/user/list", service.GetUserList)
 	r.POST("/user/create", service.CreateUser)
@@ -19,6 +18,13 @@ func Router() *gin.Engine {
 
 	// 发送消息
 	r.GET("/ws/send", service.SendMsg)
+	r.GET("/ws/chat", service.Chat)
+
+	// 静态资源
+	r.Static("asset", "asset/")
+	r.LoadHTMLGlob("views/**/*")
+	r.GET("/", service.GetIndex)
+	r.GET("/index", service.GetIndex)
 
 	// swagger info
 	docs.SwaggerInfo.Title = "Star-Im"

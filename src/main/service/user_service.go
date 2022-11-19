@@ -8,7 +8,7 @@ import (
 	"io"
 	"math/rand"
 	"net/http"
-	"star-im/src/models"
+	"star-im/src/main/models"
 	"strconv"
 )
 

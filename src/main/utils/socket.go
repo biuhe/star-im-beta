@@ -3,7 +3,7 @@ package utils
 import (
 	"context"
 	"fmt"
-	"star-im/src/config"
+	"star-im/src/main/config"
 )
 
 const (
@@ -23,7 +23,7 @@ func Publish(context context.Context, channel string, msg string) error {
 // Subscribe 订阅 redis 消息
 func Subscribe(context context.Context, channel string) (string, error) {
 	sub := config.RDB.Subscribe(context, channel)
-	fmt.Println("订阅websocket消息", sub)
+	fmt.Println("订阅websocket消息", context)
 	msg, err := sub.ReceiveMessage(context)
 
 	if err != nil {

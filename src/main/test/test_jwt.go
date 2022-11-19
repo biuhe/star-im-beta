@@ -1,6 +1,8 @@
 package main
 
-import "star-im/src/utils"
+import (
+	"star-im/src/main/utils"
+)
 
 // 测试 jwt
 // https://github.com/golang-jwt/jwt/

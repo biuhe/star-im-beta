@@ -1,8 +1,8 @@
 package main
 
 import (
-	"star-im/src/config"
-	"star-im/src/router"
+	"star-im/src/main/config"
+	"star-im/src/main/router"
 )
 
 func main() {

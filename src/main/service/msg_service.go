@@ -6,7 +6,8 @@ import (
 	"github.com/gorilla/websocket"
 	"log"
 	"net/http"
-	"star-im/src/utils"
+	"star-im/src/main/models"
+	"star-im/src/main/utils"
 	"time"
 )
 
@@ -38,12 +39,6 @@ func SendMsg(context *gin.Context) {
 func MsgHandler(context *gin.Context, ws *websocket.Conn) {
 	for {
 		msg, err := utils.Subscribe(context, utils.PublishKey)
-		mt, message, err := ws.ReadMessage()
-		if err != nil {
-
-			return
-		}
-		fmt.Println(string(message))
 
 		if err != nil {
 			fmt.Println("订阅websocket消息异常:", err)
@@ -52,9 +47,13 @@ func MsgHandler(context *gin.Context, ws *websocket.Conn) {
 		fmt.Println("发送消息：", msg)
 		datetime := time.Now().Format("2006-01-02 15:04:02")
 		m := fmt.Sprintf("[ws][%s]:%s", datetime, msg)
-		err = ws.WriteMessage(mt, []byte(m))
+		err = ws.WriteMessage(1, []byte(m))
 		if err != nil {
 			log.Fatalln(err)
 		}
 	}
+}
+
+func Chat(context *gin.Context) {
+	models.Chat(context.Writer, context.Request)
 }

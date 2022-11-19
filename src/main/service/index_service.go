@@ -3,9 +3,10 @@ package service
 import (
 	"encoding/json"
 	"github.com/gin-gonic/gin"
+	"html/template"
 	"io"
 	"net/http"
-	"star-im/src/models"
+	"star-im/src/main/models"
 )
 
 // GetIndex
@@ -20,10 +21,16 @@ import (
 // @Failure      500  {string}  http.StatusInternalServerError
 // @Router       /index [get]
 func GetIndex(context *gin.Context) {
-	context.JSON(http.StatusOK, gin.H{
-		"code": http.StatusOK,
-		"msg":  "hello world",
-	})
+	index, err := template.ParseFiles("index.html")
+	if err != nil {
+		panic(err)
+	}
+
+	index.Execute(context.Writer, "index")
+	//context.JSON(http.StatusOK, gin.H{
+	//	"code": http.StatusOK,
+	//	"msg":  "hello world",
+	//})
 }
 
 // Login

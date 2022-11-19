@@ -48,10 +48,13 @@
 - JWT
   github：https://github.com/golang-jwt/jwt/
 
+- Set
+  github：https://github.com/fatih/set
+
 - Redis
   github：https://github.com/go-redis/redis
 - SQL, NoSQL, MQ 等
-
+-
 
 ## 架构划分
 - 客户端：H5

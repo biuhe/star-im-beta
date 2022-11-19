@@ -3,8 +3,8 @@ package models
 import (
 	"fmt"
 	"gorm.io/gorm"
-	"star-im/src/config"
-	"star-im/src/utils"
+	"star-im/src/main/config"
+	"star-im/src/main/utils"
 	"time"
 )
 
@@ -42,7 +42,7 @@ type User struct {
 
 // TableName 表名
 func (table *User) TableName() string {
-	return "User"
+	return "user"
 }
 
 // GetUserList 获取用户列表
