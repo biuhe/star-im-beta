@@ -467,7 +467,7 @@
 
                 },
                 initwebsocket: function () {
-                    var url = "ws://" + location.host + "/chat?userId=" + userId() + "&token=" + util.parseQuery("token");
+                    var url = "ws://" + location.host + "/ws/chat?userId=" + userId() + "&token=" + util.parseQuery("token");
                     this.webSocket = new WebSocket(url);
                     //消息处理
                     this.webSocket.onmessage = function (evt) {
@@ -608,7 +608,7 @@
                         var that = this;
                         console.log(that);
                         post("contact/joinGroup", {comId: dstobj, "userId": userId()}, function (res) {
-                            if (res.Code == 0) {
+                            if (res.Code == 200) {
                                 mui.toast("添加成功");
 
                                 that.loadcommunitys();

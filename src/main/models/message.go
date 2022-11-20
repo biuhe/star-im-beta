@@ -50,6 +50,9 @@ var upGrader = websocket.Upgrader{
 }
 
 // 需要 ：发送者ID ，接受者ID ，消息类型，发送的内容，发送类型
+// 服务端接收到消息后，转发给chan，内部的udp客户端，监听到chan有消息，
+// 就将chan的消息发送给udp的服务端，然后udp的服务端收到消息后，去执行了业务逻辑，根据消息类型走了私聊的业务代码
+
 func Chat(writer http.ResponseWriter, request *http.Request) {
 	// 获取参数，并校验 token 合法性
 	// token := query.Get("token")

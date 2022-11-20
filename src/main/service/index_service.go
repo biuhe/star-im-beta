@@ -7,6 +7,7 @@ import (
 	"io"
 	"net/http"
 	"star-im/src/main/models"
+	"star-im/src/main/utils"
 )
 
 // GetIndex
@@ -94,9 +95,11 @@ func Login(context *gin.Context) {
 	}
 
 	// 生成 jwt
-
+	//token加密
+	user.Identity, _ = utils.GenToken(user.Username)
 	context.JSON(http.StatusOK, gin.H{
 		"code": http.StatusOK,
 		"msg":  "登录成功",
+		"data": user,
 	})
 }
