@@ -21,16 +21,26 @@ import (
 // @Failure      500  {string}  http.StatusInternalServerError
 // @Router       /index [get]
 func GetIndex(context *gin.Context) {
-	index, err := template.ParseFiles("index.html")
+	index, err := template.ParseFiles("src/resource/index.html", "src/resource/views/chat/head.html")
 	if err != nil {
 		panic(err)
 	}
 
-	index.Execute(context.Writer, "index")
-	//context.JSON(http.StatusOK, gin.H{
-	//	"code": http.StatusOK,
-	//	"msg":  "hello world",
-	//})
+	err = index.Execute(context.Writer, "index")
+	if err != nil {
+		panic(err)
+	}
+}
+
+func ToRegister(c *gin.Context) {
+	ind, err := template.ParseFiles("src/resource/views/user/register.html")
+	if err != nil {
+		panic(err)
+	}
+	err = ind.Execute(c.Writer, "register")
+	if err != nil {
+		panic(err)
+	}
 }
 
 // Login
@@ -46,8 +56,9 @@ func Login(context *gin.Context) {
 	// 获取请求体
 	body, err := io.ReadAll(context.Request.Body)
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "请求体为空",
+		context.JSON(http.StatusOK, gin.H{
+			"code": http.StatusInternalServerError,
+			"msg":  "请求体为空",
 		})
 		return
 	}
@@ -55,6 +66,14 @@ func Login(context *gin.Context) {
 	dto := models.User{}
 	// json 解析转换为实体
 	err = json.Unmarshal(body, &dto)
+	if dto.Username == "" || dto.Password == "" {
+		context.JSON(http.StatusOK, gin.H{
+			"code": http.StatusInternalServerError,
+			"msg":  "请输入用户名和密码",
+		})
+		return
+	}
+
 	//_, validError := govalidator.ValidateStruct(user)
 	//if validError != nil {
 	//	context.JSON(http.StatusInternalServerError, gin.H{
@@ -67,8 +86,9 @@ func Login(context *gin.Context) {
 	// 校验密码
 	res := models.ValidPassword(dto.Password, user.Salt, user.Password)
 	if !res {
-		context.JSON(http.StatusInternalServerError, gin.H{
-			"msg": "用户名或密码错误",
+		context.JSON(http.StatusOK, gin.H{
+			"code": http.StatusInternalServerError,
+			"msg":  "用户名或密码错误",
 		})
 		return
 	}

@@ -1,3 +1,4 @@
+
 function _selectToolbar(name, fn) {
     var self = this,
         knode = self.get(name);
@@ -13,7 +14,6 @@ function _selectToolbar(name, fn) {
 function KToolbar(options) {
     this.init(options);
 }
-
 _extend(KToolbar, KWidget, {
     init: function (options) {
         var self = this;

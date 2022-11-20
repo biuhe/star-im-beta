@@ -1,17 +1,14 @@
 * {
-    font-family: 'Microsoft Yahei'
+	font-family: 'Microsoft Yahei'
 }
-
 #login-form #login-content .suggest-container {
     width: 246px;
     top: 46px
 }
-
 #login-form #login-content .suggest-container .suggest-item a {
     padding: 4px 6px;
     color: #4d4d4d
 }
-
 #login-form #login-content .fm-text {
     border-radius: 3px;
     line-height: 16px;
@@ -20,20 +17,16 @@
     font-size: 14px;
     background: transparent
 }
-
 #login-form #login-content .fm-text:focus {
     background-color: #e9fbfe;
     border-color: #69c5dd
 }
-
 #login-form #login-content #fm-login-checkcode-update {
     color: #00a2ca
 }
-
 #login-form #login-content .fm-field-wrap .fm-checkcode-update {
     margin-top: 10px
 }
-
 #login-form #login-content .fm-checkcode-img {
     height: 35px;
     width: 83px;
@@ -52,7 +45,6 @@
 .input-focus {
     border: 1px solid #69C5DD
 }
-
 .fm-button {
     display: inline-block;
     min-width: 140px;
@@ -68,22 +60,18 @@
     cursor: pointer;
     border-radius: 4px
 }
-
 .fm-button:hover {
     background: #e4162d;
     border-color: #e4162d;
     border: none
 }
-
 .fm-button:active {
     background: #e4162d;
     border-color: #e4162d
 }
-
 .icon-notice {
     background-color: #f1f6fa
 }
-
 .icon-error {
     background-color: #fff3e7
 }

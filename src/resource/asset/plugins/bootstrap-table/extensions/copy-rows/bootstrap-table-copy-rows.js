@@ -3,23 +3,23 @@
  * @version: v1.0.0
  */
 
-!function ($) {
-    "use strict";
+ !function ($) {
+     "use strict";
 
-    var calculateObjectValue = $.fn.bootstrapTable.utils.calculateObjectValue,
-        sprintf = $.fn.bootstrapTable.utils.sprintf;
+     var calculateObjectValue = $.fn.bootstrapTable.utils.calculateObjectValue,
+         sprintf = $.fn.bootstrapTable.utils.sprintf;
 
-    var copytext = function (text) {
-        var textField = document.createElement('textarea');
-        $(textField).html(text);
-        document.body.appendChild(textField);
-        textField.select();
+     var copytext = function (text) {
+         var textField = document.createElement('textarea');
+         $(textField).html(text);
+         document.body.appendChild(textField);
+         textField.select();
 
-        try {
-            document.execCommand('copy');
-        } catch (e) {
-            console.log("Oops, unable to copy");
-        }
+         try {
+             document.execCommand('copy');
+         } catch (e) {
+             console.log("Oops, unable to copy");
+         }
         $(textField).remove();
     };
 

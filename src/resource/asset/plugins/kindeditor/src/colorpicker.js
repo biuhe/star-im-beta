@@ -1,8 +1,8 @@
+
 // create KColorPicker class
 function KColorPicker(options) {
-    this.init(options);
+	this.init(options);
 }
-
 _extend(KColorPicker, KWidget, {
     init: function (options) {
         var self = this;

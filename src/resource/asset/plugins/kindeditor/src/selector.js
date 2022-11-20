@@ -1,3 +1,4 @@
+
 function _contains(nodeA, nodeB) {
     // Bypass comparison on document node since
     // we don't deal with cross frame,

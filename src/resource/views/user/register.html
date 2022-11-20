@@ -20,13 +20,13 @@
 <div class="mui-content register-page" id="pageapp">
     <form class="mui-input-group register-form" id='login-form'>
         <div class="mui-input-row">
-            <input class="mui-input-clear mui-input" placeholder="请输入用户名" type="text" v-model="user.name">
+            <input class="mui-input-clear mui-input" placeholder="请输入用户名" type="text" v-model="user.username">
         </div>
         <div class="mui-input-row">
             <input class="mui-input-clear mui-input" placeholder="请输入密码" type="password" v-model="user.password">
         </div>
         <div class="mui-input-row">
-            <input class="mui-input-clear mui-input" placeholder="再输入密码" type="password" v-model="user.Identity">
+            <input class="mui-input-clear mui-input" placeholder="再输入密码" type="password" v-model="user.identity">
         </div>
     </form>
     <div class="mui-content-padded">
@@ -47,9 +47,9 @@
         data: function () {
             return {
                 user: {
-                    name: "",
+                    username: "",
                     password: "",
-                    Identity: "",
+                    identity: "",
                 }
             }
         },
@@ -59,9 +59,9 @@
                 console.log(this.user)
                 //网络请求
                 //封装了promis
-                util.post("/user/createUser", this.user).then(res => {
+                util.post("/register", this.user).then(res => {
                     console.log(res)
-                    if (res.code != 0) {
+                    if (res.code !== 200) {
                         mui.toast(res.message)
                     } else {
                         //location.replace("localhost:8081")

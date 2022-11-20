@@ -1,3 +1,4 @@
+
 function _createButton(arg) {
     arg = arg || {};
     var name = arg.name || '',
@@ -14,7 +15,6 @@ function _createButton(arg) {
 function KDialog(options) {
     this.init(options);
 }
-
 _extend(KDialog, KWidget, {
     init: function (options) {
         var self = this;

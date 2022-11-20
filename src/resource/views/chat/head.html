@@ -57,20 +57,22 @@
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "//" + location.host + "/" + uri, true);
         // 添加http头，发送信息至服务器时内容编码类型
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
                 fn.call(this, JSON.parse(xhr.responseText));
             }
         };
-        var _data = [];
-        if (!!userId()) {
-            // data["userid"] = userId();
-        }
-        for (var i in data) {
-            _data.push(i + "=" + encodeURI(data[i]));
-        }
-        xhr.send(_data.join("&"));
+        // var _data=[];
+        // if(!! userId()){
+        //    // data["userid"] = userId();
+        // }
+        // for(var i in data){
+        //     _data.push( i +"=" + encodeURI(data[i]));
+        // }
+        // xhr.send(_data.join("&"));
+        xhr.send(JSON.stringify(data))
+
     }
 
     function uploadfile(uri, dom, fn) {

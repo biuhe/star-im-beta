@@ -11,6 +11,9 @@ import (
 func Router() *gin.Engine {
 	r := gin.Default()
 	r.POST("/login", service.Login)
+	r.GET("/register", service.ToRegister)
+	r.POST("/register", service.CreateUser)
+
 	r.GET("/user/list", service.GetUserList)
 	r.POST("/user/create", service.CreateUser)
 	r.POST("/user/update", service.UpdateUser)
@@ -21,8 +24,9 @@ func Router() *gin.Engine {
 	r.GET("/ws/chat", service.Chat)
 
 	// 静态资源
-	r.Static("asset", "asset/")
-	r.LoadHTMLGlob("views/**/*")
+	r.Static("/asset", "src/resource/asset/")
+	r.StaticFile("/favicon.ico", "src/resource/asset/images/favicon.ico")
+	r.LoadHTMLGlob("src/resource/views/**/*")
 	r.GET("/", service.GetIndex)
 	r.GET("/index", service.GetIndex)
 

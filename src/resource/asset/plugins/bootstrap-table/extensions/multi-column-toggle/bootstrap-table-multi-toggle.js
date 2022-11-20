@@ -3,17 +3,17 @@
  * @version: v1.0.0
  */
 
-!function ($) {
-    "use strict";
+ !function ($) {
+     "use strict";
 
-    var sprintf = $.fn.bootstrapTable.utils.sprintf;
+     var sprintf = $.fn.bootstrapTable.utils.sprintf;
 
-    var reInit = function (self) {
-        self.initHeader();
-        self.initSearch();
-        self.initPagination();
-        self.initBody();
-    };
+     var reInit = function (self) {
+         self.initHeader();
+         self.initSearch();
+         self.initPagination();
+         self.initBody();
+     };
 
     $.extend($.fn.bootstrapTable.defaults, {
         showToggleBtn: false,
@@ -87,4 +87,4 @@
         that.toggleColumn(0, that.columns[0].visible, false);
     };
 
-}(jQuery);
+ }(jQuery);

@@ -1,3 +1,4 @@
+
 function _iframeDoc(iframe) {
     iframe = _get(iframe);
     return iframe.contentDocument || iframe.contentWindow.document;
@@ -97,7 +98,6 @@ function _elementVal(knode, val) {
 function KEdit(options) {
     this.init(options);
 }
-
 _extend(KEdit, KWidget, {
     init: function (options) {
         var self = this;

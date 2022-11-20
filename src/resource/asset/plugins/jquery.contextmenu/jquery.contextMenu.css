@@ -154,7 +154,6 @@
 .context-menu-input > label > textarea {
     height: 100px;
 }
-
 .context-menu-item > .context-menu-list {
     display: none;
     /* re-positioned by js */

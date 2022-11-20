@@ -739,6 +739,7 @@ KindEditor.plugin('multiimage', function (K) {
     };
 
 
+
 // Private: callFlash handles function calls made to the Flash element.
 // Calls are made with a setTimeout for some functions to work around
 // bugs in the ExternalInterface library.

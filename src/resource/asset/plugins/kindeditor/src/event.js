@@ -1,3 +1,4 @@
+
 var _useCapture = false;
 
 /**
@@ -52,7 +53,6 @@ function _bindEvent(el, type, fn) {
         el.attachEvent('on' + type, fn);
     }
 }
-
 // remove native event
 function _unbindEvent(el, type, fn) {
     if (el.removeEventListener) {
@@ -70,7 +70,6 @@ var _EVENT_PROPS = ('altKey,attrChange,attrName,bubbles,button,cancelable,charCo
 function KEvent(el, event) {
     this.init(el, event);
 }
-
 _extend(KEvent, {
     init: function (el, event) {
         var self = this, doc = el.ownerDocument || el.document || el;

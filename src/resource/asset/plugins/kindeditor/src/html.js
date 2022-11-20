@@ -328,7 +328,6 @@ function _formatHtml(html, htmlTags, urlType, wellFormatted, indentChar) {
     html = html.replace(/<span id="__kindeditor_pre_newline__">\n/g, '\n');
     return _trim(html);
 }
-
 // 清理MS Word专用标签
 function _clearMsWord(html, htmlTags) {
     html = html.replace(/<meta[\s\S]*?>/ig, '')
@@ -343,7 +342,6 @@ function _clearMsWord(html, htmlTags) {
         });
     return _formatHtml(html, htmlTags);
 }
-
 // 根据URL判断 media type
 function _mediaType(src) {
     if (/\.(rm|rmvb)(\?|$)/i.test(src)) {
@@ -354,7 +352,6 @@ function _mediaType(src) {
     }
     return 'video/x-ms-asf-plugin';
 }
-
 // 根据 media type取得className
 function _mediaClass(type) {
     if (/realaudio/i.test(type)) {

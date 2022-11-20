@@ -1,7 +1,7 @@
-function KUploadButton(options) {
-    this.init(options);
-}
 
+function KUploadButton(options) {
+	this.init(options);
+}
 _extend(KUploadButton, {
     init: function (options) {
         var self = this,

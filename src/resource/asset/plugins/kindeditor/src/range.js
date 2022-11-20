@@ -1,3 +1,4 @@
+
 var _START_TO_START = 0,
     _START_TO_END = 1,
     _END_TO_END = 2,
@@ -145,7 +146,6 @@ function _copyAndDelete(range, isCopy, isDelete) {
     }
     return isCopy ? frag : range;
 }
-
 //在marquee、select元素里不能使用moveToElementText，IE专用
 function _moveToElementText(range, el) {
     var node = el;
@@ -162,7 +162,6 @@ function _moveToElementText(range, el) {
     } catch (e) {
     }
 }
-
 //根据原生Range，取得开始节点和结束节点的位置。IE专用
 function _getStartEnd(rng, isStart) {
     var doc = rng.parentElement().ownerDocument,
@@ -234,7 +233,6 @@ function _getStartEnd(rng, isStart) {
     }
     return {node: startNode, offset: startPos};
 }
-
 //根据Node和offset，取得表示该位置的原生Range。IE专用
 function _getEndRange(node, offset) {
     var doc = node.ownerDocument || node,
@@ -293,7 +291,6 @@ function _getEndRange(node, offset) {
     K(dummy).remove();
     return range;
 }
-
 // convert native Range to KRange
 function _toRange(rng) {
     var doc, range;
@@ -337,7 +334,6 @@ function _toRange(rng) {
 function KRange(doc) {
     this.init(doc);
 }
-
 _extend(KRange, {
     init: function (doc) {
         var self = this;

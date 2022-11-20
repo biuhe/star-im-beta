@@ -226,7 +226,6 @@ a.badge-more:hover {
     color: #169bd5;
     text-decoration: none;
 }
-
 /*textarea禁用重置*/
 .no-resize {
     resize: none;
@@ -472,7 +471,6 @@ sup span.mianfei {
     width: 100%;
     height: 100%;
 }
-
 /*css自定义隐藏*/
 .hide-self {
     display: none;
@@ -723,7 +721,6 @@ img.wenzhang {
 .panel-huidalist-b {
     margin-left: 15px;
 }
-
 /*文章的标题*/
 span.text-info a {
     font-size: 14px;
@@ -740,7 +737,6 @@ span.text-info a {
     filter: alpha(opacity=100);
     opacity: 1.0;
 }
-
 /*活动相关横条*/
 .huodong-hengtiao {
     padding: 0px 15px;
@@ -839,26 +835,22 @@ span.text-info a {
 .small-margin {
     margin: 5px 0;
 }
-
 /*百度地图 start */
 #box-baidu-map {
 
     background-img: url(../img/load.gif);
     background-repeat: no-repeat;
 }
-
 /*百度地图 end */
 
 .indent {
     text-indent: 2em;
 }
-
 /*新手帮助 start*/
 .pic {
     width: 100%;
     height: 520px;
 }
-
 /*新手帮助 end*/
 
 /*验证码 */
@@ -885,6 +877,7 @@ span.text-info a {
     height: 600px;
     overflow-y: auto;
 }
+
 
 
 .dropdown-menu {
@@ -934,31 +927,26 @@ span.text-info a {
 .yb-biaoti {
     color: #505050;
 }
-
 /*正文*/
 .yb-zhengwen {
     font-family: '宋体 Regular', '宋体';
     color: #8a8a8b;
 }
-
 /*字体*/
 .yb-yahei {
     font-family: '微软雅黑';
     color: #8a8a8b;
 }
-
 /*消息提示*/
 .yb-tip {
     color: #a0a0a0;
     background: #f86100;
     color: #fff;
 }
-
 /*警示性文本*/
 .yb-tip-warning {
     color: #f86100;
 }
-
 /*提示性文本,带有链接*/
 .yb-tip a {
     color: #29528b;

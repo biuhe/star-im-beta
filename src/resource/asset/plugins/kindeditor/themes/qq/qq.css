@@ -7,7 +7,6 @@
     margin: 0;
     padding: 0;
 }
-
 /* toolbar */
 .ke-container-qq .ke-toolbar {
     border-bottom: 1px solid #c3c3c3;
@@ -113,7 +112,6 @@
     padding: 0px;
     border: 1px solid #fff;
 }
-
 .ke-container-qq .ke-toolbar .ke-on {
     border-left: 1px solid white;
     border-top: 1px solid white;
@@ -137,12 +135,10 @@
 .ke-colorpicker-qq {
     background: #fff;
 }
-
 /* statusbar */
 .ke-container-qq .ke-statusbar {
     display: none;
 }
-
 /* menu */
 .ke-menu-qq {
     border: 1px solid #a6a6a6;
@@ -155,12 +151,10 @@
     right: 218px;
     width: 130px;
 }
-
 .ke-menu-qq .ke-menu-item {
     padding: 0px;
     background: #fff;
 }
-
 .ke-menu-qq .ke-menu-item-on {
     border: 1px solid #000080;
     background: #FFEEC2;

@@ -17,7 +17,6 @@
     -webkit-transition: .15s;
     z-index: 1000;
 }
-
 .rschedule {
     background-color: rgba(0, 0, 0, 0);
     border: 5px solid rgba(0, 183, 229, 0.9);
@@ -37,7 +36,6 @@
     animation: spin 1s infinite linear;
     z-index: 1000;
 }
-
 .r-sigh {
     display: none;
     border-radius: 50px;
@@ -55,19 +53,15 @@
     font-weight: bold;
     color: #2187e7;
 }
-
 .rprogress-sigh {
     background-image: none !important;
 }
-
 .rprogress-sigh .rschedule {
     display: none !important;
 }
-
 .rprogress-sigh .r-sigh {
     display: block !important;
 }
-
 .rsalert {
     font-size: 12px;
     color: #bbb;

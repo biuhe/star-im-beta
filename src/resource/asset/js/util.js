@@ -1,20 +1,12 @@
 String.prototype.startWith = function (str) {
     if (str == null || str == "" || this.length == 0 || str.length > this.length)
         return false;
-    if (this.substr(0, str.length) == str)
-        return true;
-    else
-        return false;
-    return true;
+    return this.substr(0, str.length) == str;
 }
 String.prototype.endWith = function (str) {
     if (str == null || str == "" || this.length == 0 || str.length > this.length)
         return false;
-    if (this.substring(this.length - str.length) == str)
-        return true;
-    else
-        return false;
-    return true;
+    return this.substring(this.length - str.length) == str;
 }
 
 //日期格式化
@@ -119,10 +111,12 @@ Core.prototype.post = function (uri, data, fn) {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", url, true);
         // 添加http头，发送信息至服务器时内容编码类型
-        xhr.setRequestHeader(
-            "Content-Type",
-            "application/x-www-form-urlencoded"
-        );
+        // 			"application/x-www-form-urlencoded"
+
+        console.log(xhr)
+        console.log(data)
+
+        xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {
                 resolve(JSON.parse(xhr.responseText));
@@ -131,12 +125,15 @@ Core.prototype.post = function (uri, data, fn) {
         xhr.onerror = function () {
             reject({"code": -1, "msg": "服务器繁忙"})
         }
-        var _data = [];
-        for (var i in data) {
-            _data.push(i + "=" + encodeURI(data[i]));
-        }
-        xhr.send(_data.join("&"));
+        // form-urlencoded 格式
+        // var _data=[];
+        // for(var i in data){
+        //     _data.push( i +"=" + encodeURI(data[i]));
+        // }
+        // xhr.send(_data.join("&"));
 
+        // json body 格式
+        xhr.send(JSON.stringify(data))
     })
 }
 Core.prototype.uploadfile = function (uri, dom) {

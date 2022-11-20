@@ -4,7 +4,6 @@
     ms-box-sizing: border-box;
     box-sizing: border-box;
 }
-
 body {
     font-family: 'Neuton', serif;
     font-size: 24px;
@@ -13,31 +12,25 @@ body {
     background: url(../images/dust.png);
     color: rgb(31, 43, 51);
 }
-
 h1, h2, h3, h4, h5, h6, .button {
     font-family: 'Alfa Slab One', cursive;
     font-weight: 400;
 }
-
 h1 {
     font-size: 72px;
     margin-bottom: 0;
 }
-
 h2 {
     font-size: 48px;
     margin: 72px 0 0;
 }
-
 a, a:visited, a:active {
     text-decoration: none;
     color: rgb(39, 148, 221);
 }
-
 a:hover {
     color: rgb(123, 188, 253);
 }
-
 pre {
     margin: 32px 3px;
     padding: 32px 18px;
@@ -46,11 +39,9 @@ pre {
     color: rgb(240, 239, 220);
     box-shadow: 0 0px 8px rgb(88, 84, 57);
 }
-
 code {
     font-family: 'Anonymous Pro', monospace;
 }
-
 header {
     background: rgba(4, 18, 27, 0.88);
     padding-bottom: 48px;
@@ -96,31 +87,25 @@ p.lead {
     max-width: 940px;
     margin: 0 auto;
 }
-
 .logo {
     color: rgb(240, 239, 220);
 }
-
 .logo span {
     color: rgb(222, 69, 91);
 }
-
 .logo img {
     width: 113px;
     display: inline-block;
     vertical-align: bottom;
 }
-
 .pin {
     position: absolute;
     top: -49px;
     right: -87px;
 }
-
 .note-container {
     margin-top: 10px;
 }
-
 .note {
     padding: 18px 20px;
     background: #eee;
@@ -136,7 +121,6 @@ p.lead {
     transform: rotate(-6deg);
     font-size: 18px;
 }
-
 .note h3 {
     font-size: 32px;
     margin: 0;
@@ -204,7 +188,6 @@ p.lead {
     margin-top: -50px;
     text-align: center;
 }
-
 .gallery .container-indicator {
     position: absolute;
     bottom: 50%;

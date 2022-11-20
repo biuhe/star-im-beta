@@ -4726,6 +4726,7 @@
                 params.push(encodeURIComponent(key) + '=' + encodeURIComponent(val));
             });
             try {
+                console.log("这？")
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
             } catch (e) {
             }
@@ -10115,7 +10116,6 @@ KindEditor.plugin('fixtoolbar', function (K) {
     if (!self.fixToolBar) {
         return;
     }
-
     function init() {
         var toolbar = K('.ke-toolbar');
         var originY = toolbar.pos().y;
@@ -10133,7 +10133,6 @@ KindEditor.plugin('fixtoolbar', function (K) {
             }
         });
     }
-
     if (self.isCreated) {
         init();
     } else {

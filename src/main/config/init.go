@@ -15,13 +15,13 @@ import (
 
 func InitConfig() {
 	viper.SetConfigName("app")
-	viper.AddConfigPath("src/config")
+	viper.AddConfigPath("src/main/config")
 	err := viper.ReadInConfig()
 	if err != nil {
 		fmt.Println("读取配置异常：", err)
 	}
 
-	fmt.Println("初始化 app 配置")
+	fmt.Println("初始化 app 配置成功")
 }
 
 var DB *gorm.DB
@@ -43,7 +43,7 @@ func InitDB() {
 	// 连接数据库，并配置慢SQL日志
 	DB, _ = gorm.Open(mysql.Open(viper.GetString("settings.database.source")),
 		&gorm.Config{Logger: newLogger})
-	fmt.Println("初始化数据库配置")
+	fmt.Println("初始化数据库配置成功")
 
 }
 
@@ -62,7 +62,7 @@ func InitCache() {
 		fmt.Println("初始化缓存配置失败：", err)
 		return
 	}
-	fmt.Println("初始化缓存配置", pong)
+	fmt.Println("初始化缓存配置成功", pong)
 }
 
 const (

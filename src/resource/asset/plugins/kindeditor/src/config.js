@@ -1,3 +1,4 @@
+
 function _getBasePath() {
     var els = document.getElementsByTagName('script'), src;
     for (var i = 0, len = els.length; i < len; i++) {

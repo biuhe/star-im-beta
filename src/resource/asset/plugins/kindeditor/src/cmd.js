@@ -1,3 +1,4 @@
+
 // original execCommand
 function _nativeCommand(doc, key, val) {
     try {
@@ -5,7 +6,6 @@ function _nativeCommand(doc, key, val) {
     } catch (e) {
     }
 }
-
 // original queryCommandValue
 function _nativeCommandValue(doc, key) {
     var val = '';
@@ -18,13 +18,11 @@ function _nativeCommandValue(doc, key) {
     }
     return val;
 }
-
 // get current selection of a document
 function _getSel(doc) {
     var win = _getWin(doc);
     return _IERANGE ? doc.selection : win.getSelection();
 }
-
 // get range of current selection
 function _getRng(doc) {
     var sel = _getSel(doc), rng;
@@ -41,7 +39,6 @@ function _getRng(doc) {
     }
     return rng;
 }
-
 //将map的复合key转换成单一key
 function _singleKeyMap(map) {
     var newMap = {}, arr, v;
@@ -54,12 +51,10 @@ function _singleKeyMap(map) {
     });
     return newMap;
 }
-
 //判断一个node是否有指定属性或CSS
 function _hasAttrOrCss(knode, map) {
     return _hasAttrOrCssByKey(knode, map, '*') || _hasAttrOrCssByKey(knode, map);
 }
-
 function _hasAttrOrCssByKey(knode, map, mapKey) {
     mapKey = mapKey || knode.name;
     if (knode.type !== 1) {
@@ -88,7 +83,6 @@ function _hasAttrOrCssByKey(knode, map, mapKey) {
     }
     return false;
 }
-
 //删除一个node的属性和CSS
 function _removeAttrOrCss(knode, map) {
     if (knode.type != 1) {
@@ -97,7 +91,6 @@ function _removeAttrOrCss(knode, map) {
     _removeAttrOrCssByKey(knode, map, '*');
     _removeAttrOrCssByKey(knode, map);
 }
-
 function _removeAttrOrCssByKey(knode, map, mapKey) {
     mapKey = mapKey || knode.name;
     if (knode.type !== 1) {
@@ -129,7 +122,6 @@ function _removeAttrOrCssByKey(knode, map, mapKey) {
         knode.remove(true);
     }
 }
-
 //取得最里面的element
 function _getInnerNode(knode) {
     var inner = knode;
@@ -138,7 +130,6 @@ function _getInnerNode(knode) {
     }
     return inner;
 }
-
 //最里面的element为inline element时返回true
 function _isEmptyNode(knode) {
     if (knode.type != 1 || knode.isSingle()) {
@@ -146,7 +137,6 @@ function _isEmptyNode(knode) {
     }
     return knode.html().replace(/<[^>]+>/g, '') === '';
 }
-
 //merge two wrapper
 //a : <span><strong></strong></span>
 //b : <strong><em></em></strong>
@@ -170,7 +160,6 @@ function _mergeWrapper(a, b) {
     }
     return a;
 }
-
 //wrap and merge a node
 function _wrapNode(knode, wrapper) {
     wrapper = wrapper.clone(true);
@@ -200,7 +189,6 @@ function _wrapNode(knode, wrapper) {
     nodeWrapper.replaceWith(wrapper);
     return wrapper;
 }
-
 //merge attributes and styles
 function _mergeAttrs(knode, attrs, styles) {
     _each(attrs, function (key, val) {
@@ -212,7 +200,6 @@ function _mergeAttrs(knode, attrs, styles) {
         knode.css(key, val);
     });
 }
-
 // 判断node是否在pre、style、script里
 function _inPreElement(knode) {
     while (knode && knode.name != 'body') {
@@ -223,12 +210,10 @@ function _inPreElement(knode) {
     }
     return false;
 }
-
 // create KCmd class
 function KCmd(range) {
     this.init(range);
 }
-
 _extend(KCmd, {
     init: function (range) {
         var self = this, doc = range.doc;

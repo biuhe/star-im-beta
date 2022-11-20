@@ -1,3 +1,4 @@
+
 function _tabs(options) {
     var self = _widget(options),
         remove = self.remove,

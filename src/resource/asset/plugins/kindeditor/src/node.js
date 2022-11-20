@@ -1,5 +1,6 @@
+
 function _get(val) {
-    return K(val)[0];
+	return K(val)[0];
 }
 
 function _getDoc(node) {
@@ -108,7 +109,6 @@ function _getScrollPos(doc) {
 function KNode(node) {
     this.init(node);
 }
-
 _extend(KNode, {
     init: function (node) {
         var self = this;

@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
+	"math/rand"
 	"star-im/src/main/models"
 )
 
@@ -15,23 +17,22 @@ func main() {
 	}
 
 	// 迁移 schema 如果没有则创建实体
-	err = db.AutoMigrate(&models.User{})
+	//err = db.AutoMigrate(&models.User{})
+	//err = db.AutoMigrate(&models.Message{})
+	//err = db.AutoMigrate(&models.Contact{})
+	//err = db.AutoMigrate(&models.Group{})
 	//if err != nil {
 	//	panic("failed to create schema")
 	//}
 
-	err = db.AutoMigrate(&models.Message{})
-	err = db.AutoMigrate(&models.Contact{})
-	err = db.AutoMigrate(&models.Group{})
-
 	// Create
-	//user := &models.User{}
-	//user.Username = "张三"
-	//user.Password = "123456"
-	//salt := fmt.Sprintf("%06d", rand.Int31())
-	//user.Salt = salt
-	//user.Password = models.EncryptPassword(user.Password, salt)
-	//db.Create(user)
+	user := &models.User{}
+	user.Username = "张三"
+	user.Password = "123456"
+	salt := fmt.Sprintf("%06d", rand.Int31())
+	user.Salt = salt
+	user.Password = models.EncryptPassword(user.Password, salt)
+	db.Create(user)
 
 	// Read
 	//fmt.Println(db.First(user, 1))       // 根据整型主键查找

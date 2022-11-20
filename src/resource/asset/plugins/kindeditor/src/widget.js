@@ -1,3 +1,4 @@
+
 function _drag(options) {
     var moveEl = options.moveEl,
         moveFn = options.moveFn,
@@ -85,7 +86,6 @@ function _drag(options) {
 function KWidget(options) {
     this.init(options);
 }
-
 _extend(KWidget, {
     init: function (options) {
         var self = this;

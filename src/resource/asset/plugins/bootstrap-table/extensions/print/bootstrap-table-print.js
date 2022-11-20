@@ -19,7 +19,6 @@
             '<p>Printed on: ' + new Date + ' </p>' +
             '<div class="bs-table-print">' + table + "</div></body></html>";
     }
-
     $.extend($.fn.bootstrapTable.defaults, {
         showPrint: false,
         printAsFilteredAndSortedOnUI: true, //boolean, when true - print table as sorted and filtered on UI.
@@ -123,7 +122,6 @@
                             return {colName: col.field, value: col.printFilter};
                         });
                     }
-
                     var doPrint = function (data) {
                         data = filterRows(data, getColumnFilters(that.options.columns));
                         data = sortRows(data, that.options.printSortColumn, that.options.printSortOrder);

@@ -1,3 +1,4 @@
+
 function _loadScript(url, fn) {
     var head = document.getElementsByTagName('head')[0] || (_QUIRKS ? document.body : document.documentElement),
         script = document.createElement('script');
@@ -58,7 +59,8 @@ function _ajax(url, fn, method, param, dataType) {
             params.push(encodeURIComponent(key) + '=' + encodeURIComponent(val));
         });
         try {
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.setRequestHeader('Content-Type', 'application/json');
         } catch (e) {
         }
         xhr.send(params.join('&'));

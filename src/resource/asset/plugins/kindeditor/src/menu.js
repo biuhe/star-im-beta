@@ -1,8 +1,8 @@
+
 // create KMenu class
 function KMenu(options) {
-    this.init(options);
+	this.init(options);
 }
-
 _extend(KMenu, KWidget, {
     init: function (options) {
         var self = this;
