@@ -113,9 +113,6 @@ Core.prototype.post = function (uri, data, fn) {
         // 添加http头，发送信息至服务器时内容编码类型
         // 			"application/x-www-form-urlencoded"
 
-        console.log(xhr)
-        console.log(data)
-
         xhr.setRequestHeader("Content-Type", "application/json; charset=utf-8");
         xhr.onreadystatechange = function () {
             if (xhr.readyState == 4 && (xhr.status == 200 || xhr.status == 304)) {

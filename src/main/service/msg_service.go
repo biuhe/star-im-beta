@@ -1,13 +1,16 @@
 package service
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"html/template"
+	"io"
 	"log"
 	"net/http"
 	"star-im/src/main/models"
+	"star-im/src/main/models/dto"
 	"star-im/src/main/utils"
 	"strconv"
 	"time"
@@ -88,4 +91,22 @@ func MsgHandler(context *gin.Context, ws *websocket.Conn) {
 
 func Chat(context *gin.Context) {
 	models.Chat(context.Writer, context.Request)
+}
+
+func CacheMsg(context *gin.Context) {
+	// 获取请求体
+	body, err := io.ReadAll(context.Request.Body)
+	if err != nil {
+		context.JSON(http.StatusOK, gin.H{
+			"code": http.StatusInternalServerError,
+			"msg":  "请输入用户名密码",
+		})
+		return
+	}
+
+	cacheDto := dto.CacheMsgDto{}
+	err = json.Unmarshal(body, &cacheDto)
+
+	res := models.CacheMsg(cacheDto.UserIdA, cacheDto.UserIdB, cacheDto.Start, cacheDto.End, cacheDto.BoolRev)
+	utils.RespOKList(context.Writer, "ok", res)
 }

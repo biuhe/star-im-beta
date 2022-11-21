@@ -43,7 +43,7 @@ func CreateUser(context *gin.Context) {
 	// 获取请求体
 	body, err := io.ReadAll(context.Request.Body)
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{
+		context.JSON(http.StatusOK, gin.H{
 			"code": http.StatusInternalServerError,
 			"msg":  "请输入用户名密码",
 		})
@@ -53,7 +53,7 @@ func CreateUser(context *gin.Context) {
 	user := models.User{}
 	err = json.Unmarshal(body, &user)
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{
+		context.JSON(http.StatusOK, gin.H{
 			"code": http.StatusInternalServerError,
 			"msg":  "转换实体异常，请排查",
 		})
@@ -62,7 +62,7 @@ func CreateUser(context *gin.Context) {
 
 	dbUser := models.FindUserByUsername(user.Username)
 	if dbUser.ID != 0 {
-		context.JSON(http.StatusInternalServerError, gin.H{
+		context.JSON(http.StatusOK, gin.H{
 			"code": http.StatusInternalServerError,
 			"msg":  "用户名已注册",
 		})
@@ -127,7 +127,7 @@ func UpdateUser(context *gin.Context) {
 	// 获取请求体
 	body, err := io.ReadAll(context.Request.Body)
 	if err != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{
+		context.JSON(http.StatusOK, gin.H{
 			"code": http.StatusInternalServerError,
 			"msg":  "请求体为空",
 		})
@@ -138,7 +138,7 @@ func UpdateUser(context *gin.Context) {
 	err = json.Unmarshal(body, &user)
 	_, validError := govalidator.ValidateStruct(user)
 	if validError != nil {
-		context.JSON(http.StatusInternalServerError, gin.H{
+		context.JSON(http.StatusOK, gin.H{
 			"code": http.StatusInternalServerError,
 			"msg":  "修改参数不匹配",
 		})

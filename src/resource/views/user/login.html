@@ -60,6 +60,7 @@
                     } else {
                         var url = "/chat/index.shtml?id=" + res.data.id
                             + "&token=" + res.data.token
+                        // 设置到 sessionStorage
                         userInfo(res.data)
                         userId(res.data.id)
                         // localStorage.setItem('userInfo', JSON.stringify(res.data))

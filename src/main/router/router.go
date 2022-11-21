@@ -24,6 +24,9 @@ func Router() *gin.Engine {
 	r.GET("/ws/send", service.SendMsg)
 	r.GET("/ws/chat", service.Chat)
 
+	r.POST("/friends", service.SearchFriends)
+
+	r.POST("/msg/cacheMsg", service.CacheMsg)
 	// 静态资源
 	r.Static("/asset", "src/resource/asset/")
 	r.StaticFile("/favicon.ico", "src/resource/asset/images/favicon.ico")

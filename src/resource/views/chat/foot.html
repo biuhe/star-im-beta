@@ -265,14 +265,15 @@
                     mui.alert("请加微信号msb-shenzhuan索取")
                 },
                 showmsg: function (user, msg, isReverse, isFirst) {
-                    //console.log(">>>>>>>>>>>", user)
-                    // console.log(">>>>>>>>>>>", msg)
+                    // console.log(">>>>>>>>>>>user", user)
+                    // console.log(">>>>>>>>>>>msg", msg)
                     var data = {}
+                    // 如果是自己
                     data.ismine = userId() == msg.userId;
                     //console.log(data.ismine,userId(),msg.userid)
                     data.user = user;
                     data.msg = msg;
-                    console.log(this.msglist)
+                    // console.log(this.msglist)
                     if (isReverse) {
                         this.msglist = [data].concat(this.msglist);
                     } else {
@@ -318,6 +319,7 @@
                             this.showmsg(userInfo(), msg);
                         }
 
+                        console.log(msg);
                         this.webSocket.send(JSON.stringify(msg))
                     }
                 },
@@ -361,7 +363,7 @@
                     if (this.isDisable) {
                         //首次读取某个用户的消息记录
                         if (this.isReadRedisMsg.filter(item => item === user.ID).length <= 0) {
-                            post("user/redisMsg", {
+                            post("msg/cacheMsg", {
                                 userIdA: userId(),
                                 userIdB: user.ID,
                                 start: this.start,
@@ -379,8 +381,8 @@
                         this.setTimeFlag()
                         //console.log(user)
                         this.win = "single";
-                        this.title = "和" + user.Name + "聊天中";
-                        this.otherAvatar = user.Avatar;
+                        this.title = "和" + user.username + "聊天中";
+                        this.otherAvatar = user.avatar;
                         this.msgcontext.TargetId = parseInt(user.ID);
                         this.msgcontext.Type = 1;
                         mui('.mui-scroll-wrapper').scroll({
@@ -400,7 +402,7 @@
                                     this.isLoadMore = true;
                                     this.start = this.end + 1;
                                     this.end = this.end + 2;
-                                    post("user/redisMsg", {
+                                    post("msg/cacheMsg", {
                                         userIdA: userId(),
                                         userIdB: user.ID,
                                         start: this.start,
@@ -446,7 +448,7 @@
                 },
                 onmessage: function (data) {
                     this.loaduserinfo(data.userId, function (user) {
-
+                        console.log(data)
                         this.showmsg(user, data)
                         this.friends.map((item) => {
                             if (item.ID == data.userId) {
@@ -496,7 +498,10 @@
                 },
                 loadfriends: function () {
                     var that = this;
-                    post("searchFriends", {userId: userId()}, function (res) {
+                    let user = {
+                        ID: userId()
+                    }
+                    post("friends", user, function (res) {
                         that.friends = res.Rows || [];
                         var usermap = this.usermap;
                         for (var i in res.Rows) {
